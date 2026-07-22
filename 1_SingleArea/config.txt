@@ -1,0 +1,65 @@
+R1
+---------------
+en
+conf t
+hostname R1
+int f0/0
+ip add 192.168.1.1 255.255.255.0
+no sh
+int s1/0
+ip add 10.0.0.1 255.255.255.252
+no sh
+int s1/1
+ip add 10.0.0.5 255.255.255.252
+no sh
+
+router ospf 1
+router-id 1.1.1.1
+network 192.168.1.1 0.0.0.0 area 0
+network 10.0.0.1 0.0.0.0 area 0
+network 10.0.0.5 0.0.0.0 area 0
+passive-interface f0/0
+
+R2
+---------------
+en
+conf t
+hostname R2
+int f0/0
+ip add 192.168.2.1 255.255.255.0
+no sh
+int s1/0
+ip add 10.0.0.2 255.255.255.252
+no sh
+int s1/1
+ip add 10.0.0.9 255.255.255.252
+no sh
+
+router ospf 1
+router-id 2.2.2.2
+network 192.168.2.1 0.0.0.0 area 0
+network 10.0.0.2 0.0.0.0 area 0
+network 10.0.0.9 0.0.0.0 area 0
+passive-interface f0/0
+
+R3
+---------------
+en
+conf t
+hostname R3
+int f0/0
+ip add 192.168.3.1 255.255.255.0
+no sh
+int s1/0
+ip add 10.0.0.6 255.255.255.252
+no sh
+int s1/1
+ip add 10.0.0.10 255.255.255.252
+no sh
+
+router ospf 1
+router-id 3.3.3.3
+network 192.168.3.1 0.0.0.0 area 0
+network 10.0.0.6 0.0.0.0 area 0
+network 10.0.0.10 0.0.0.0 area 0
+passive-interface f0/0
